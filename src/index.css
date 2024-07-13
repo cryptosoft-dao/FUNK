@@ -1,13 +1,17 @@
 body {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+}
+.main-screen {
+  width: 100vw; /* set width to viewport width */
+  height: 100vh; /* set height to viewport height */
+  overflow: hidden; /* prevent scrolling */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.upper-part,.lower-part {
+  width: 100%; /* set width to parent element */
+  height: 50vh; /* keep the same height */
 }
