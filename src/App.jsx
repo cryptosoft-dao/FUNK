@@ -1,5 +1,5 @@
-import Layout from "./layout/Layout";
-import Earn from "./pages/Earn";
+//import Layout from "./layout/Layout";
+//import Earn from "./pages/Earn";
 
 function App() {
   return (
