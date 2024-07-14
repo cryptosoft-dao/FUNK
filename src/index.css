@@ -1,9 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
   overflow: hidden;
   height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
+  font-family: "Arimo", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 
 :root {
@@ -26,8 +39,12 @@ body {
     top: 0;
   }
 
-  .up{
-    z-index: 9999;
+  .up {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12px;
+    z-index: 99999;
   }
 
   .down {
@@ -40,7 +57,7 @@ body {
 
 .down_animation {
   position: fixed;
-  background-color: red;
+  background-color: #1A73E8;
   z-index: 1;
   width: 5px;
   height: 5px;
@@ -61,4 +78,80 @@ body {
     height: var(--down-animation-size);
     opacity: 0;
   }
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0E1621;
+  color: #fff;
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
+.loading {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  bottom: 12px;
+  justify-content: center;
+  gap: 16px;
+  z-index: 9999999999;
+
+  .navbar__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+    font-size: 18px;
+    gap: 8px;
+  }
+}
+
+@keyframes fromLeftToRightAmination {
+  0%{
+    position: fixed;
+    left: 0;
+  }
+  100%{
+    position: fixed;
+    left: 100%;
+  }
+}
+@keyframes fromRightToLeftAmination {
+  0%{
+    position: fixed;
+    left: 100%;
+  }
+  100%{
+    position: fixed;
+    left: 0;
+  }
+}
+.page__second{
+  animation: fromRightToLeftAmination 0.5s ease;
+}
+.page{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: blue;
+  z-index: 9999999;
 }
