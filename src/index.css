@@ -5,13 +5,60 @@ body {
   margin: 0;
   padding: 0;
 }
-.main-screen {
-  width: 100vw; /* set width to viewport width */
-  height: 100vh; /* set height to viewport height */
-  overflow: hidden; /* prevent scrolling */
+
+:root {
+  --down-bg-color: #0D92F5;
+  --down-animation-size: 600px;
+  --reverse-down-animation-size: -300px;
 }
 
-.upper-part,.lower-part {
-  width: 100%; /* set width to parent element */
-  height: 50vh; /* keep the same height */
+.earn_screen {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .up,
+  .down {
+    width: 100%;
+    height: 50vh;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+  }
+
+  .up{
+    z-index: 9999;
+  }
+
+  .down {
+    height: 50vh;
+    background-color: var(--down-bg-color);
+    overflow: hidden;
+    top: 50vh;
+  }
+}
+
+.down_animation {
+  position: fixed;
+  background-color: red;
+  z-index: 1;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  animation: down_animation 1s ease-in;
+}
+
+@keyframes down_animation {
+  0% {
+    width: 5px;
+    height: 5px;
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--reverse-down-animation-size), var(--reverse-down-animation-size));
+    width: var(--down-animation-size);
+    height: var(--down-animation-size);
+    opacity: 0;
+  }
 }
