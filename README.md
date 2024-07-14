@@ -1,3 +1,3 @@
 # Stack: [React + JS], [Python + Flask]
 
-### app URL: `https://fclicker.netlify.app`
+### app URL: https://fclicker.netlify.app
