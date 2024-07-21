@@ -108,6 +108,7 @@ p {
         gap: 8px;
 
         .icon {
+          cursor: pointer;
           width: 50px;
           height: 50px;
           background-color: transparent;
@@ -166,13 +167,13 @@ p {
 }
 
 .loading {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+ 
 @keyframes fromLeftToRightAmination {
   0% {
     position: fixed;
@@ -215,7 +216,8 @@ p {
   left: 0;
   top: 0;
   height: 100%;
-  width: auto;
+  width: 100%;
+  object-fit: cover;
 }
 
 .next_image {
@@ -223,7 +225,8 @@ p {
   left: 100%;
   top: 0;
   height: 100%;
-  width: auto;
+  width: 100%;
+  object-fit: cover;
 }
 
 .btn {
@@ -241,9 +244,8 @@ p {
   font-weight: 700;
   line-height: 22.99px;
   text-align: left;
-
 }
-
+ 
 .points {
   opacity: 0.9;
   color: #fff;
@@ -252,4 +254,68 @@ p {
   line-height: 36.31px;
   text-align: right;
 }
+ 
+.team {
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 24px;
+  background-color: #000000;
 
+  .line {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+ 
+  .ref {
+    width: 94%;
+    justify-content: space-between;
+    gap: 24px;
+
+    .inner_1 {
+      display: flex;
+      gap: 16px;
+
+      .img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+      }
+
+      .text {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .title {
+          font-size: 22px;
+          font-weight: 500;
+          line-height: 26.63px;
+        }
+
+        .frends_count {
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 19.36px;
+        }
+      }
+    }
+
+    .inner_2 {
+      display: flex;
+
+      .coins {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 29.05px;
+      }
+    }
+  }
+}
