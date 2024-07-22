@@ -2,9 +2,9 @@ from telebot import types
 import telebot
 import requests
 
-URL = 'https://funkdev.netlify.app/'
-TG_TOKEN = '7233254807:AAH_oDLbGJTMnOVScWAY9ESdn22fQWiyg8c'
-BASE_URL = 'https://hamster-dev.online'
+URL = 'https://funkai.ru'
+TG_TOKEN = '7233254807:AAHwwz6mbVjLNNqFIm_U0ZnVQWvbCt0cTEc'
+BASE_URL = 'https://funkai.online'
 IMAGES_ID = []
 def webAppKeyboard(message: types.Message):
     keyboard = types.InlineKeyboardMarkup(row_width=1)
