@@ -58,11 +58,11 @@ function Earn({ setPage, userData, coins, ads, swipeHandler = () => { } }) {
     }, [adIndex, ads])
     useEffect(() => {
         setImg1Src(`${BASE_URL}${ad?.image}`)
-        if (adIndex === 0) {
-            setImg2Src(`${BASE_URL}${ads[ads.length - 1].image}`)
+        if (adIndex + 1 === ads.length - 1){
+            setImg2Src(`${BASE_URL}${ads[0].image}`)
         }
-        else {
-            setImg2Src(`${BASE_URL}${ads[adIndex - 1].image}`)
+        else{
+            setImg2Src(`${BASE_URL}${ads[adIndex + 1].image}`)
         }
     }, [ad, adIndex, ads])
     useEffect(() => {
