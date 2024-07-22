@@ -22,16 +22,9 @@ function Loading({ setPage, setUserData, setAds, setRefs, setCoins, startId }) {
                 setPage(pageTypes.earn)
             })
         })
-        getAds().then(res => {
+        console.log('s ',startId);
+        getAds(startId).then(res => {
             const adsData = res.data.ads;
-            if (startId !== 0 && startId < adsData.length) {
-                console.log('started');
-                const startIndex = adsData.findIndex(ad => ad.id === startId);
-                if (startIndex !== -1) {
-                    const firstAd = adsData.splice(startIndex, 1)[0];
-                    adsData.unshift(firstAd);
-                }
-            }
             setAdsState(adsData);
         })
 

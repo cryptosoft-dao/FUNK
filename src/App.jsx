@@ -8,7 +8,7 @@ import tg_user_id from "./constants/tg_user_id";
 
 function App() {
   const [userData, setUserData] = useState({})
-  const [defaultAdIndex, setDefaultAdIndex] = useState(1)
+  const [defaultAdIndex, setDefaultAdIndex] = useState(-1)
   const [ads, setAds] = useState({})
   const [page, setPage] = useState(pageTypes.loading)
   const [refs, setRefs] = useState([])
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <>
-      {page === pageTypes.loading && (<Loading startId={defaultAdIndex} setCoins={setCoins} setUserData={setUserData} setPage={setPage} setAds={setAds} setRefs={setRefs} />)}
+      {page === pageTypes.loading && defaultAdIndex !== -1 && (<Loading startId={defaultAdIndex} setCoins={setCoins} setUserData={setUserData} setPage={setPage} setAds={setAds} setRefs={setRefs} />)}
       {page !== pageTypes.loading && (<Earn swipeHandler={swipeHandler} coins={coins} userData={userData} setPage={setPage} ads={ads} />)}
       {page === pageTypes.team && (<Team setPage={setPage} refs={refs} />)}
     </>

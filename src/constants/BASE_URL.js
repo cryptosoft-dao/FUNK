@@ -1,2 +1,2 @@
-const BASE_URL = 'https://hamster-dev.online'
+const BASE_URL = 'https://funkai.online'
 export default BASE_URL
