@@ -44,9 +44,17 @@ app = Flask(__name__)
 cors = CORS(app)
 AI_KEY = "key-3gu9q47JEsxOGDOdr1T14G6zK4EDHLtR4aSmmbOJIxaSNTccGY0vS4hMb3Yhh43VEbxxYQl7I9gTU7GoT1C4gqBNJTENIVp4"
 PROMPT_GENERATOR = RandomPromptGenerator()
+
+user = 'u2745068_admin'
+password = 'admin123'
+host = 'server18.hosting.reg.ru'
+port = 3306
+database = 'u2745068_main'
+
 engine = create_engine(
-   "sqlite:///server.db"
+   'sqlite:///server.db'
 )
+#url=f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}"
 # "mysql+pymysql://u2513925_admin:Vadim234@server149.hosting.reg.ru:1500//u2513925_hamsterdevonline"
 LEVELS = [
     {'id': 0, 'name': 'Новичок', 'coins': 0},
@@ -88,35 +96,22 @@ def add_ai(prompt:str, imagePath: str):
         fh.write(base64.decodebytes(img_data.encode()))
 @app.post('/user/me')
 def user_me():
-    data = request.get_json()
-    with Session(engine) as session:
-        user = session.execute(select(User).where(User.tg_id == data['tg_id'])).scalar()
-        if user == None:
-            user = User(tg_id = data['tg_id'],name = data['name'],image = 'none')
-            session.add(user)
-            session.commit()
-
-        try:
-            next_level = list(filter(lambda l: l['id'] == user.level_id + 1,LEVELS))[0]
-
-            if next_level['coins'] - user.coins <= 0:
-                user.level_id += 1
+    try:
+        data = request.get_json()
+        with Session(engine) as session:
+            user = session.execute(select(User).where(User.tg_id == data['tg_id'])).scalar()
+            if user == None:
+                user = User(tg_id = data['tg_id'],name = data['name'],image = 'none')
+                session.add(user)
                 session.commit()
-        except: pass
 
-        level = list(filter(lambda l: l['id'] == user.level_id,LEVELS))[0]
-        if level['id'] == LEVELS[-1]['id']: next_level = {"id":-1, "name":'Levels finished','coins':-1}
-        else: next_level = list(filter(lambda l: l['id'] == user.level_id + 1,LEVELS))[0]
-
-        return jsonify({
-            'coins':user.coins,
-            'coins_per_click':user.coins_per_click,
-            'level_name':level['name'],
-            'coins_to_new_level':next_level['coins'] - user.coins,
-            'level_id':level['id'],
-            'max_level_id':LEVELS[-1]['id'],
-            'converted_coins':convert_moneys(user.coins)
-        })
+            return jsonify({
+                'coins':user.coins,
+                'coins_per_click':user.coins_per_click,
+                'converted_coins':convert_moneys(user.coins)
+            })
+    except Exception as e:
+        return jsonify({'e':e})
 @app.post("/users/all")
 def get_all_users():
     with Session(engine) as session:
