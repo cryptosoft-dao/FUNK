@@ -19,10 +19,13 @@ function Earn({ setPage, userData, coins, ads, swipeHandler = () => { } }) {
     const swipingHandler = (_) => {
         swipeHandler()
         console.log(ads.length, adIndex);
-        if (adIndex + 1 >= ads.length) {
+        console.log(adIndex >= ads.length - 2);
+        if (adIndex >= ads.length - 2) {
+            console.log('zero');
             setAdIndex(0)
         }
         else {
+            console.log('addddd', adIndex + 1);
             setAdIndex(adIndex + 1)
         }
     }
@@ -54,14 +57,15 @@ function Earn({ setPage, userData, coins, ads, swipeHandler = () => { } }) {
     })
     useEffect(() => {
         console.log(ads, adIndex);
+        console.log('currentAD', ads[adIndex]);
         setAd(ads[adIndex])
     }, [adIndex, ads])
     useEffect(() => {
         setImg1Src(`${BASE_URL}${ad?.image}`)
-        if (adIndex + 1 === ads.length - 1){
+        if (adIndex + 1 === ads.length - 1) {
             setImg2Src(`${BASE_URL}${ads[0].image}`)
         }
-        else{
+        else {
             setImg2Src(`${BASE_URL}${ads[adIndex + 1].image}`)
         }
     }, [ad, adIndex, ads])
