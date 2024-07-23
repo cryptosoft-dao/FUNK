@@ -3,7 +3,7 @@ import telebot
 import requests
 
 URL = 'https://funkai.ru'
-TG_TOKEN = '7233254807:AAHwwz6mbVjLNNqFIm_U0ZnVQWvbCt0cTEc'
+TG_TOKEN = '7088715543:AAE8PWST6q8j9EN_mC5gvvPNd9g3uhKyJBU'
 BASE_URL = 'https://funkai.online'
 IMAGES_ID = []
 def webAppKeyboard(message: types.Message):
