@@ -4,7 +4,6 @@ import sleep from '../functions/sleep';
 import pageTypes from '../constants/pageTypes';
 import convertCoins from '../functions/convertCoins';
 import { FaUser } from "react-icons/fa";
-import tg_name from '../constants/tg_name';
 
 function Team({ setPage, refs }) {
 

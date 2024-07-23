@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BASE_URL from '../constants/BASE_URL';
-import { useSwipeable } from 'react-swipeable';
+//import { useSwipeable } from 'react-swipeable';
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { PiUsersThreeFill } from "react-icons/pi";
@@ -9,7 +9,7 @@ import pageTypes from '../constants/pageTypes';
 import convertCoins from '../functions/convertCoins';
 import { isMobile } from 'react-device-detect';
 
-function Earn({ setPage, userData, coins, ads, swipeHandler = () => { } }) {
+function Earn({ setPage, coins, ads, swipeHandler = () => { } }) {
     const [animationDuration] = useState(100)
     const [adIndex, setAdIndex] = useState(0)
     const [ad, setAd] = useState(ads[adIndex])
@@ -45,6 +45,7 @@ function Earn({ setPage, userData, coins, ads, swipeHandler = () => { } }) {
     const moveToTeamHandler = () => {
         setPage(pageTypes.team)
     }
+    /*
     const swipe = useSwipeable({
         onSwipedLeft: swipingHandler,
         delta: 75,                             // min distance(px) before a swipe starts. *See Notes*
@@ -55,6 +56,7 @@ function Earn({ setPage, userData, coins, ads, swipeHandler = () => { } }) {
         swipeDuration: Infinity,               // allowable duration of a swipe (ms). *See Notes*
         touchEventOptions: { passive: true },  // options for touch listeners (*See Details*) 
     })
+    */
     useEffect(() => {
         console.log(ads, adIndex);
         console.log('currentAD', ads[adIndex]);
@@ -84,7 +86,7 @@ function Earn({ setPage, userData, coins, ads, swipeHandler = () => { } }) {
         ], { 'duration': animationDuration })
     }, [img1Src, animationDuration])
     return (
-        <div className="earn_screen" {...(isMobile ? swipe : {})} onClick={() => { console.log(isMobile); if (!isMobile) { swipingHandler("") } }}>
+        <div className="earn_screen" onClick={swipingHandler}>
             <div className="up">
                 <h1>FUNK</h1>
             </div>
