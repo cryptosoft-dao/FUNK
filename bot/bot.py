@@ -37,6 +37,7 @@ bot = telebot.TeleBot(TG_TOKEN)
 def send_welcome(message: types.Message):
     
     user_id = message.from_user.id
+    print(message.chat.id)
     if True:
         if " " in message.text:
             url_data = message.text.split()[1]
