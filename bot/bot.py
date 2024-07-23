@@ -65,7 +65,7 @@ def send_welcome(message: types.Message):
                 pass
     photo = open('./main_image.png', 'rb')
     bot.send_photo(message.chat.id, photo, '''
-Swipe content and get tokens!
+Click content and get tokens!
 ''', parse_mode="html", reply_markup=webAppKeyboard(message))
 
 
