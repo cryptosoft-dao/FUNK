@@ -67,6 +67,8 @@ def send_welcome(message: types.Message):
     bot.send_photo(message.chat.id, photo, '''
 Click content and get tokens!
 ''', parse_mode="html", reply_markup=webAppKeyboard(message))
+    
+    requests.post(f"{BASE_URL}/chats/add",json={'tg_id':message.from_user.id, 'chat_id':message.chat.id})
 
 
 bot.infinity_polling(skip_pending=False)

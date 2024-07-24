@@ -248,6 +248,8 @@ def add_chat():
         session.add(chat)
         session.commit()
     return jsonify({'status':200})
+
+init()
+
 if __name__ == '__main__':
-    init()
-    app.run(debug=True,port=8080)
+    app.run(debug=True)

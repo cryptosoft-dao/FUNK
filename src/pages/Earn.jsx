@@ -36,10 +36,10 @@ function Earn({ setPage, coins, ads, swipeHandler = () => { } }) {
     const sendInviteLink = () => {
         console.log(`tg://msg?text=https://t.me/funk_ai_bot?start=${tg_user_id}-${ad.id}`);
         if (isMobile) {
-            window.open(`tg://msg?text=https://t.me/funk_ai_bot?start=${tg_user_id}-${ad.id}`, "_blank")
+            window.open(`tg://msg?text=Image from FUNK AI. Tap start in bot:https://t.me/funk_ai_bot?start=${tg_user_id}-${ad.id}`, "_blank")
         }
         else {
-            window.open(`https://t.me/share/url?url=https://t.me/funk_ai_bot?start=${tg_user_id}-${ad.id}`, "_blank")
+            window.open(`https://t.me/share/url?url=Image from FUNK AI. Tap start in bot:https://t.me/funk_ai_bot?start=${tg_user_id}-${ad.id}`, "_blank")
         }
     }
     const moveToTeamHandler = () => {

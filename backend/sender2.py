@@ -22,14 +22,13 @@ fileObj.close()
 print(bot.get_me())
 
 for item in data['leaders']:
-    print(item)
     try:
         print(item['meta']['id'])
         photo = open('./main_image.png', 'rb')
         bot.send_photo(item['meta']['id'], photo, '''
         🚀 RELEASE!
 
-        We are happy to announce FUNK! Click or swipe content to get rewards.
+        We are happy to announce FUNK! Click content to get rewards.
 
         A Clicker Beneficiaries in stake!
         ''', reply_markup=keyboard())
