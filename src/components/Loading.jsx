@@ -12,22 +12,22 @@ import tg_image from '../constants/tg_image';
 function Loading({ setPage, setUserData, setAds, setRefs, setCoins, startId }) {
     const [adsState, setAdsState] = useState([])
     useEffect(() => {
-        getRefs(tg_user_id).then(res => {
+        (async () => {
+            let res = await getRefs(tg_user_id)
             setRefs(res.data.refs)
-        })
-        getUserData(tg_user_id, tg_name, tg_image).then((res) => {
-            setUserData(res.data)
-            setCoins(res.data.coins)
-            sleep(500).then(_ => {
-                setPage(pageTypes.earn)
-            })
-        })
-        console.log('s ',startId);
-        getAds(startId).then(res => {
-            const adsData = res.data.ads;
-            setAdsState(adsData);
-        })
 
+            let res2 = await getUserData(tg_user_id, tg_name, tg_image)
+            setUserData(res2.data)
+            setCoins(res2.data.coins)
+
+            let res3 = await getAds(startId)
+            const adsData = res3.data.ads;
+            console.log(adsData);
+            setAdsState(adsData);
+            setAds(adsData)
+            await sleep(500)
+            setPage(pageTypes.earn)
+        })()
     }, [setPage, setUserData, setAds, setRefs, startId, setCoins])
 
     useEffect(() => {

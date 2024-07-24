@@ -19,17 +19,20 @@ text = fileObj.read() # или читайте по строке
 data = json.loads(text)
 fileObj.close()
 
-#for item in data['leaders']:
-#    try:print(item['meta']['id'])
-#    except:pass
-photo = open('./main_image.png', 'rb')
-bot.send_photo(238211251,photo,'''
-🚀 RELEASE!
-
-We are happy to announce FUNK! Click or swipe content to get rewards.
-
-A Clicker Beneficiaries in stake!
-''',reply_markup=keyboard())
 print(bot.get_me())
+
+for item in data['leaders']:
+    try:
+        print(item['meta']['id'])
+        photo = open('./main_image.png', 'rb')
+        bot.send_photo(item['meta']['id'], photo, '''
+        🚀 RELEASE!
+
+        We are happy to announce FUNK! Click or swipe content to get rewards.
+
+        A Clicker Beneficiaries in stake!
+        ''', reply_markup=keyboard())
+    except:pass
+
 
 #bot.infinity_polling()

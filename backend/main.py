@@ -40,6 +40,14 @@ class Ref(Base):
     creator_id = Column(Integer)
     come_id = Column(Integer)
 
+class Chat(Base):
+    __tablename__ = 'chats'
+
+    id = Column(Integer, primary_key=True)
+    tg_id = Column(Integer)
+    chat_id = Column(Integer)
+
+
 app = Flask(__name__)
 cors = CORS(app)
 AI_KEY = "key-3gu9q47JEsxOGDOdr1T14G6zK4EDHLtR4aSmmbOJIxaSNTccGY0vS4hMb3Yhh43VEbxxYQl7I9gTU7GoT1C4gqBNJTENIVp4"
@@ -155,24 +163,31 @@ def get_ad_image(image):
     return send_file(f'./ads/{image}')
 @app.post("/ref/all")
 def get_all_refs():
-    data = request.get_json()
-    refs = []
-    with Session(engine) as session:
-        res = session.execute(select(Ref).where(Ref.creator_id == data['tg_id'])).scalars().all()
-        for f in res:
-            u = session.execute(select(User).where(User.tg_id == f.come_id)).scalar()
-            print(u.tg_id)
-            total_friends_1 = session.execute(select(Ref).where(Ref.creator_id == u.tg_id)).scalars().all()
-            print(total_friends_1)
-            total_friends = len(total_friends_1)
-            refs.append({
-                'name':u.name,
-                'money':u.coins,
-                'total_friends':total_friends,
-                'converted_coins':convert_moneys(u.coins),
-                'image':u.image
-            })
-    return jsonify({'refs':refs})
+    try:
+        data = request.get_json()
+        refs = []
+        with Session(engine) as session:
+            res = session.execute(select(Ref).where(Ref.creator_id == data['tg_id'])).scalars().all()
+            for f in res:
+                try:
+                    u = session.execute(select(User).where(User.tg_id == f.come_id)).scalar()
+                    print(f.come_id)
+                    print(u.tg_id)
+                    total_friends_1 = session.execute(select(Ref).where(Ref.creator_id == u.tg_id)).scalars().all()
+                    print(total_friends_1)
+                    total_friends = len(total_friends_1)
+                    refs.append({
+                        'name':u.name,
+                        'money':u.coins,
+                        'total_friends':total_friends,
+                        'converted_coins':convert_moneys(u.coins),
+                        'image':u.image
+                    })
+                except:pass
+        return jsonify({'refs':refs})
+    except Exception as e:
+        print(e)
+        return jsonify({'refs':[],'e':str(e)})
 @app.get("/test_data/image")
 def get_test_image():
     return send_file("./test_data/image.png")
@@ -225,7 +240,14 @@ def add_ai_image_without_prompt():
 
         return jsonify({'status':200, 'image':f'/ads/image/{ad_id}.png'})
 
-
+@app.post('/chats/add')
+def add_chat():
+    data = request.get_json()
+    with Session(engine) as session:
+        chat = Chat(tg_id=data['tg_id'],chat_id=data['chat_id'])
+        session.add(chat)
+        session.commit()
+    return jsonify({'status':200})
 if __name__ == '__main__':
     init()
     app.run(debug=True,port=8080)
