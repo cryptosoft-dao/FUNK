@@ -200,6 +200,12 @@ def add_ref():
         print(ref)
         if ref == None:
             ref = Ref(creator_id = data['creator_id'], come_id = data['come_id'])
+            creator_user = session.execute(select(User).where(User.tg_id == data['creator_id'])).scalar()
+            come_user = session.execute(select(User).where(User.tg_id == data['come_id'])).scalar()
+
+            come_user.coins += 10_000
+            creator_user.coins += 10_000
+            
             session.add(ref)
             session.commit()
         return jsonify({'status':200})
