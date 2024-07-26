@@ -193,22 +193,24 @@ def get_test_image():
     return send_file("./test_data/image.png")
 @app.post("/ref/add")
 def add_ref():
-    data = request.get_json()
-    print(data)
-    with Session(engine) as session:
-        ref = session.execute(select(Ref).where(Ref.creator_id == data['creator_id'], Ref.come_id == data['come_id'])).scalar()
-        print(ref)
-        if ref == None:
-            ref = Ref(creator_id = data['creator_id'], come_id = data['come_id'])
-            creator_user = session.execute(select(User).where(User.tg_id == data['creator_id'])).scalar()
-            come_user = session.execute(select(User).where(User.tg_id == data['come_id'])).scalar()
-
-            come_user.coins += 10_000
-            creator_user.coins += 10_000
-            
+    data = request.get_json()
+    print(data)
+    with Session(engine) as session:
+        ref = session.execute(select(Ref).where(Ref.creator_id == data['creator_id'], Ref.come_id == data['come_id'])).scalar()
+        print(ref)
+        if ref == None:
+            ref = Ref(creator_id = data['creator_id'], come_id = data['come_id'])
+            creator_user = session.execute(select(User).where(User.tg_id == data['creator_id'])).scalar()
+            come_user = session.execute(select(User).where(User.tg_id == data['come_id'])).scalar()
             session.add(ref)
             session.commit()
-        return jsonify({'status':200})
+
+            creator_user.coins += 10_00
+            session.commit()
+            come_user.coins += 10_000
+            
+            session.commit()
+        return jsonify({'status':200})
 @app.get('/server/a')
 def get_server():
     return  send_file('./server.db')
