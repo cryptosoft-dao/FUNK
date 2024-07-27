@@ -203,7 +203,7 @@ def add_ref():
             creator_user = session.execute(select(User).where(User.tg_id == data['creator_id'])).scalar()
             come_user = session.execute(select(User).where(User.tg_id == data['come_id'])).scalar()
             if come_user == None:
-                come_user = User(tg_id = data["come_id"], image="from ref", name = " Your ref")
+                come_user = User(tg_id = data["come_id"], image="from ref", name = data.get("user_name", "Your ref"))
                 session.add(come_user)
                 session.commit()
             session.add(ref)
