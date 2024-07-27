@@ -202,10 +202,14 @@ def add_ref():
             ref = Ref(creator_id = data['creator_id'], come_id = data['come_id'])
             creator_user = session.execute(select(User).where(User.tg_id == data['creator_id'])).scalar()
             come_user = session.execute(select(User).where(User.tg_id == data['come_id'])).scalar()
+            if come_user == None:
+                come_user = User(tg_id = data["come_id"], image="from ref", name = " Your ref")
+                session.add(come_user)
+                session.commit()
             session.add(ref)
             session.commit()
 
-            creator_user.coins += 10_00
+            creator_user.coins += 10_000
             session.commit()
             come_user.coins += 10_000
 
