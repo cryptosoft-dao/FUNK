@@ -50,7 +50,7 @@ class Chat(Base):
 
 app = Flask(__name__)
 cors = CORS(app)
-AI_KEY = "key-3gu9q47JEsxOGDOdr1T14G6zK4EDHLtR4aSmmbOJIxaSNTccGY0vS4hMb3Yhh43VEbxxYQl7I9gTU7GoT1C4gqBNJTENIVp4"
+AI_KEY = "key-1juPdl0bxgKk6A0FevusjI7wgRizo8s4ugDGBPwNS7D4qBXgVvjl1DJ6Cy20U7XzstTSpavnkFnLhbl74KpuH3nVBxgZN0VO"
 PROMPT_GENERATOR = RandomPromptGenerator()
 
 user = 'u2745068_admin'
@@ -81,7 +81,7 @@ def convert_moneys(money: int):
 
     return money_str
 def add_ai(prompt:str, imagePath: str):
-    url = "https://api.getimg.ai/v1/latent-consistency/text-to-image"
+    url = "https://api.getimg.ai/v1/stable-diffusion-xl/text-to-image"
 
     payload = {
         "prompt": prompt,
