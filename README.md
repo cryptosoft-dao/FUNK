@@ -1,3 +1,5 @@
-# Stack: [React + JS], [Python + Flask]
+# FUNK
 
-### app URL: https://fclicker.netlify.app
+Telegram Browser Clicker :)
+
+Stack: [React + JS], [Python + Flask]
